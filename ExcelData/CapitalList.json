@@ -1,0 +1,32 @@
+[
+    {
+        "COM : "하나"		
+        "FILE" : "D:\Rent\Excel\HANA\HANA_20180310.xlsx"
+        "WORKSHEET" : "(국산차)견적"
+        "PRICE" : {
+            "row" : 14,
+            "col" : 59
+        },
+        "FEE" : {
+            "M36" : {
+                "row" : 30,
+                "col" : 8
+            }
+        }
+    },
+    {
+        "COM" : "JB우리캐피탈"		
+        "FILE" : "D:\Rent\Excel\JBWOORI\JBWOORI_20180302.xlsm"
+        "WORKSHEET" : "국산"
+        "PRICE" : {
+            "row" : 16,
+            "col" : 50
+        },
+        "FEE" : {
+            "M36" : {
+                "row" : 27,
+                "col" : 9
+            }
+        }
+    }
+]
