@@ -1,46 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Xml;
+using Excel = Microsoft.Office.Interop.Excel;
 
-namespace ExcelTest
+namespace BackendCore
 {
     class ExcelParser
     {
-        public static void ReleaseExcelObject(object obj)
-        {
-            try
-            {
-                if (obj != null)
-                {
-                    Marshal.ReleaseComObject(obj);
-                    obj = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                throw ex;
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
+        private static Excel.Application sExcelApp = new Excel.Application();
 
-
-        static Excel.Application sExcelApp = new Excel.Application();
         static public void ModuleInit()
         {
             sExcelApp = new Excel.Application();
         }
+
         static public void ModuleDeInit()
         {
             sExcelApp.Quit();
@@ -54,14 +26,10 @@ namespace ExcelTest
             mSheetName = _sheetname;
         }
 
-        public string getCompanyName() { return mCompanyName;  }
-
-        private string mCompanyName;
-        private string mExcelFileName;
-        private string mSheetName;
- 
-        private Excel.Workbook mWorkbook = null;
-        private Excel.Worksheet mWorksheet = null;
+        public string GetCompanyName()
+        {
+            return mCompanyName;
+        }
 
         public void Init()
         {
@@ -89,9 +57,6 @@ namespace ExcelTest
                 ReleaseExcelObject(mWorkbook);
             }
         }
-
-        int mGtotRow = 0, mGtotCol = 0;
-        int mRentRow = 0, mRentCol = 0;
 
         public void SetGTotalPos(int row, int col)
         {
@@ -125,13 +90,37 @@ namespace ExcelTest
             }
             return ret;
         }
-        
+
+        private Excel.Workbook mWorkbook = null;
+        private Excel.Worksheet mWorksheet = null;
+
+        private string mCompanyName;
+        private string mExcelFileName;
+        private string mSheetName;
+
+        private int mGtotRow = 0, mGtotCol = 0;
+        private int mRentRow = 0, mRentCol = 0;
+  
+        private static void ReleaseExcelObject(object obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    Marshal.ReleaseComObject(obj);
+                    obj = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                throw ex;
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
     }
 }
-
-
-// ws2.Cells[14, 59].Value = 40000000 + i * 10000000;
-
-// System.Console.WriteLine("{0,10} {1,10} {2,10}",
-// mWorksheet.Cells[16, 50].Value,
-//  mWorksheet.Cells[27, 9].Value, ws2.Cells[30, 8].Value);

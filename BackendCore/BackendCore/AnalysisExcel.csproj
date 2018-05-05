@@ -60,10 +60,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelParser.cs" />
-    <Compile Include="MainModule.cs" />
+    <Compile Include="Source\LoadJsonConfig.cs" />
+    <Compile Include="Source\ExcelParser.cs" />
+    <Compile Include="Source\MainModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
