@@ -111,7 +111,7 @@ namespace BackendCore
             return mCapitalData.GetLength(0);
         }
 
-        public JsonCapitalData getCapitalData(int n)
+        public JsonCapitalData GetCapitalData(int n)
         {
             if (n < 0 || n >= GetCount())
             {

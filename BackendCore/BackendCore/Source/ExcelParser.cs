@@ -6,7 +6,12 @@ namespace BackendCore
 {
     class ExcelParser
     {
-        private static Excel.Application sExcelApp = new Excel.Application();
+        public ExcelParser(string _company, string _filename, string _sheetname)
+        {
+            mCompanyName = _company;
+            mExcelFileName = _filename;
+            mSheetName = _sheetname;
+        }
 
         static public void ModuleInit()
         {
@@ -19,12 +24,7 @@ namespace BackendCore
             ReleaseExcelObject(sExcelApp);
         }
 
-        public ExcelParser(string _company, string _filename, string _sheetname)
-        {
-            mCompanyName = _company;
-            mExcelFileName = _filename;
-            mSheetName = _sheetname;
-        }
+
 
         public string GetCompanyName()
         {
@@ -100,7 +100,9 @@ namespace BackendCore
 
         private int mGtotRow = 0, mGtotCol = 0;
         private int mRentRow = 0, mRentCol = 0;
-  
+
+        private static Excel.Application sExcelApp = new Excel.Application();
+
         private static void ReleaseExcelObject(object obj)
         {
             try

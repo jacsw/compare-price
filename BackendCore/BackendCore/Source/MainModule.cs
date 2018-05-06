@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackendCore.Source;
+using System;
 
 namespace BackendCore
 {
@@ -8,14 +9,14 @@ namespace BackendCore
         {
             ExcelParser.ModuleInit();
             MainModule main = new MainModule();
-            main.init();
-            main.run();
-            main.deinit();
+            main.Init();
+            main.Run();
+            main.Deinit();
 
             ExcelParser.ModuleDeInit();
         }
 
-        public void init()
+        public void Init()
         {
             // TODO : Set by JSON File
             mConfig = new CapitalConfig(@"D:\Rent\Excel\CapitalList.json");
@@ -24,7 +25,7 @@ namespace BackendCore
             mExcels = new ExcelParser[mConfig.GetCount()];
             for (int i = 0; i < mConfig.GetCount(); i++)
             {
-                var info = mConfig.getCapitalData(i);
+                var info = mConfig.GetCapitalData(i);
 
                 mExcels[i] = new ExcelParser(info.Com, info.File, info.Worksheet);
                 mExcels[i].SetGTotalPos(info.Price.Row, info.Price.Col);
@@ -35,29 +36,16 @@ namespace BackendCore
             System.Console.WriteLine("--------------------------------------------------");
         }
 
-        public void run()
+        public void Run()
         {
-            while (true)
-            {
-                System.Console.Write("자동차 비용 ( Exit = 0 ) :  ");
-                int carcost = Convert.ToInt32(Console.ReadLine());
-
-                if (carcost == 0)
-                {
-                    break;
-                }
-
-                for (int i = 0; i < mConfig.GetCount(); i++)
-                {
-                    System.Console.WriteLine("{0} : {1}", mExcels[i].GetCompanyName(), mExcels[i].GetRentCost(carcost));
-                }
-            }
+            Console.WriteLine("Running sync server.");
+            HttpService service = new HttpService(mExcels);
 
             System.Console.Write("\nPress Enter Key!!");
             System.Console.ReadKey();
         }
 
-        public void deinit()
+        public void Deinit()
         {
             for (int i = 0; i < mConfig.GetCount(); i++)
             {
