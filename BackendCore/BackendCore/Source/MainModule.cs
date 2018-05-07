@@ -28,8 +28,27 @@ namespace BackendCore
                 var info = mConfig.GetCapitalData(i);
 
                 mExcels[i] = new ExcelParser(info.Com, info.File, info.Worksheet);
-                mExcels[i].SetGTotalPos(info.Price.Row, info.Price.Col);
-                mExcels[i].SetRentCostPos(info.Fee.M36.Row, info.Fee.M36.Col);
+                if (info.Price != null)
+                {
+                    mExcels[i].SetPricePos(info.Price.Row, info.Price.Col);
+                }
+                if (info.Rate != null)
+                {
+                    mExcels[i].SetRatePos(info.Rate.Row, info.Rate.Col);
+                }
+                if (info.Fee.M36 != null)
+                {
+                    mExcels[i].SetFeeM36Pos(info.Fee.M36.Row, info.Fee.M36.Col);
+                }
+                if (info.Fee.M48 != null)
+                {
+                    mExcels[i].SetFeeM48Pos(info.Fee.M48.Row, info.Fee.M48.Col);
+                }
+                if (info.Fee.M60 != null)
+                {
+                    mExcels[i].SetFeeM60Pos(info.Fee.M60.Row, info.Fee.M60.Col);
+                }
+
                 mExcels[i].Init();
             }
 

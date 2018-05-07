@@ -75,11 +75,6 @@ namespace BackendCore.Source
                 if (recvJson != null)
                 {
                     JsonSend[] sendJson = CalculateFee(recvJson);
-
-                    for (int i = 0; i < sendJson.Length; i++)
-                    {
-                        System.Console.WriteLine(" -- Com : {0}", sendJson[i].Com);
-                    }
                     ResponseToRequester(response, sendJson);
                 }
             }
@@ -89,7 +84,6 @@ namespace BackendCore.Source
                 // Client disconnected or some other error - ignored for this example
                 ResponseToRequesterError(response);
             }
-
         }
 
         private JsonSend[] CalculateFee(JsonReceive parseData)
@@ -98,11 +92,16 @@ namespace BackendCore.Source
 
             for (int i = 0; i < mExcelInfo.Length; i++)
             {
+                System.Console.WriteLine("CalculateFee / COM : {0}", mExcelInfo[i].GetCompanyName());
+
+                mExcelInfo[i].SetPrice(parseData.Price);
+                mExcelInfo[i].SetRate(parseData.Rate);
+
                 string com = mExcelInfo[i].GetCompanyName();
-                int rate = 0;
-                int m36 = 0;
-                int m48 = 0;
-                int m60 = 0;
+                int rate = mExcelInfo[i].GetRate(parseData.Rate);
+                int m36 = mExcelInfo[i].GetFeeM36();
+                int m48 = mExcelInfo[i].GetFeeM48();
+                int m60 = mExcelInfo[i].GetFeeM60();
 
                 sendData[i] = new JsonSend { Com = com, Rate = rate, FeeM36 = m36, FeeM48 = m48, FeeM60 = m60 };
             }

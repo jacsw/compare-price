@@ -24,8 +24,6 @@ namespace BackendCore
             ReleaseExcelObject(sExcelApp);
         }
 
-
-
         public string GetCompanyName()
         {
             return mCompanyName;
@@ -58,36 +56,157 @@ namespace BackendCore
             }
         }
 
-        public void SetGTotalPos(int row, int col)
+        public void SetPricePos(int row, int col)
         {
-            mGtotRow = row;
-            mGtotCol = col;
+            mPriceRow = row;
+            mPriceCol = col;
         }
 
-        public void SetRentCostPos(int row, int col)
+        public void SetPrice(int price)
         {
-            mRentRow = row;
-            mRentCol = col;
-        }
+            if (mPriceRow == 0) return;
 
-        public int GetRentCost(int carValue)
-        {
-            int ret = 0;
             try
             {
-                mWorksheet.Cells[mGtotRow, mGtotCol].Value = carValue;
-                if (mWorksheet.Cells[mRentRow, mRentCol].Value.GetType() == typeof(string))
-                {
-                    Int32.TryParse(mWorksheet.Cells[mRentRow, mRentCol].Value, out ret);
-                }
-                else if (mWorksheet.Cells[mRentRow, mRentCol].Value.GetType() == typeof(double))
-                {
-                    ret = Convert.ToInt32(mWorksheet.Cells[mRentRow, mRentCol].Value);
-                }
+                mWorksheet.Cells[mPriceRow, mPriceCol].Value = price;
             }
-            finally
+            catch (Exception e)
             {
+                System.Console.WriteLine("- Calculate Error Fee M36 \n{0}", e.StackTrace);
             }
+        }
+
+        public void SetRatePos(int row, int col)
+        {
+            mRateRow = row;
+            mRateCol = col;
+        }
+
+        public void SetRate(int price)
+        {
+            if (mRateRow == 0) return;
+
+            try
+            {
+                mWorksheet.Cells[mRateRow, mRateCol].Value = price;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("- Calculate Error Fee M36 \n{0}", e.StackTrace);
+            }
+        }
+
+        public int GetRate(int rate)
+        {
+            int ret = 0;
+            if (mRateRow == 0) return rate;
+
+            try
+            {
+                var cell = mWorksheet.Cells[mRateRow, mRateCol];
+                if (mWorksheet.Cells[mRateRow, mRateCol].Value.GetType() == typeof(string))
+                {
+                    Int32.TryParse(mWorksheet.Cells[mRateRow, mRateCol].Value, out ret);
+                }
+                else if (mWorksheet.Cells[mRateRow, mRateCol].Value.GetType() == typeof(double))
+                {
+                    ret = Convert.ToInt32(mWorksheet.Cells[mRateRow, mRateCol].Value);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("- Calculate Error Fee M36 \n{0}", e.StackTrace);
+            }
+
+        }
+
+        public void SetFeeM36Pos(int row, int col)
+        {
+            mFeeM36Row = row;
+            mFeeM36Col = col;
+        }
+ 
+        public int GetFeeM36()
+        {
+            int ret = 0;
+            if (mFeeM36Row == 0) return 0;
+
+            try
+            {
+                if (mWorksheet.Cells[mFeeM36Row, mFeeM36Col].Value.GetType() == typeof(string))
+                {
+                    Int32.TryParse(mWorksheet.Cells[mFeeM36Row, mFeeM36Col].Value, out ret);
+                }
+                else if (mWorksheet.Cells[mFeeM36Row, mFeeM36Col].Value.GetType() == typeof(double))
+                {
+                    ret = Convert.ToInt32(mWorksheet.Cells[mFeeM36Row, mFeeM36Col].Value);
+                }
+            }
+            catch(Exception e)
+            {
+                System.Console.WriteLine("- Calculate Error Fee M36 \n{0}", e.StackTrace);
+            }
+
+            return ret;
+        }
+
+        public void SetFeeM48Pos(int row, int col)
+        {
+            mFeeM48Row = row;
+            mFeeM48Col = col;
+        }
+
+        public int GetFeeM48()
+        {
+            int ret = 0;
+            if (mFeeM48Row == 0) return 0;
+
+            try
+            {
+                if (mWorksheet.Cells[mFeeM48Row, mFeeM48Col].Value.GetType() == typeof(string))
+                {
+                    Int32.TryParse(mWorksheet.Cells[mFeeM48Row, mFeeM48Col].Value, out ret);
+                }
+                else if (mWorksheet.Cells[mFeeM48Row, mFeeM48Col].Value.GetType() == typeof(double))
+                {
+                    ret = Convert.ToInt32(mWorksheet.Cells[mFeeM48Row, mFeeM48Col].Value);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("- Calculate Error Fee M48 \n{0}", e.StackTrace);
+            }
+
+            return ret;
+        }
+
+        public void SetFeeM60Pos(int row, int col)
+        {
+            mFeeM60Row = row;
+            mFeeM60Col = col;
+        }
+
+        public int GetFeeM60()
+        {
+            int ret = 0;
+            if (mFeeM60Row == 0) return 0;
+
+            try
+            {
+                if (mWorksheet.Cells[mFeeM60Row, mFeeM60Col].Value.GetType() == typeof(string))
+                {
+                    Int32.TryParse(mWorksheet.Cells[mFeeM60Row, mFeeM60Col].Value, out ret);
+                }
+                else if (mWorksheet.Cells[mFeeM60Row, mFeeM60Col].Value.GetType() == typeof(double))
+                {
+                    ret = Convert.ToInt32(mWorksheet.Cells[mFeeM60Row, mFeeM60Col].Value);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("- Calculate Error Fee M60 \n{0}", e.StackTrace);
+            }
+
             return ret;
         }
 
@@ -98,8 +217,12 @@ namespace BackendCore
         private string mExcelFileName;
         private string mSheetName;
 
-        private int mGtotRow = 0, mGtotCol = 0;
-        private int mRentRow = 0, mRentCol = 0;
+        private int mPriceRow = 0, mPriceCol = 0;
+        private int mRateRow = 0, mRateCol = 0;
+
+        private int mFeeM36Row = 0, mFeeM36Col = 0;
+        private int mFeeM48Row = 0, mFeeM48Col = 0;
+        private int mFeeM60Row = 0, mFeeM60Col = 0;
 
         private static Excel.Application sExcelApp = new Excel.Application();
 
@@ -123,6 +246,5 @@ namespace BackendCore
                 GC.Collect();
             }
         }
-
     }
 }

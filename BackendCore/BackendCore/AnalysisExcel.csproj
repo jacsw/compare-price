@@ -69,7 +69,7 @@
   <ItemGroup>
     <Compile Include="Source\JsonParser.cs" />
     <Compile Include="Source\HttpService.cs" />
-    <Compile Include="Source\LoadJsonConfig.cs" />
+    <Compile Include="Source\CapitalConfig.cs" />
     <Compile Include="Source\ExcelParser.cs" />
     <Compile Include="Source\MainModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
