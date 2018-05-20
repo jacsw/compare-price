@@ -67,10 +67,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\Config\JsonConfig.cs" />
+    <Compile Include="Source\Interface\JsonRequest.cs" />
+    <Compile Include="Source\Interface\JsonResponse.cs" />
     <Compile Include="Source\JsonParser.cs" />
     <Compile Include="Source\HttpService.cs" />
-    <Compile Include="Source\CapitalConfig.cs" />
-    <Compile Include="Source\ExcelParser.cs" />
+    <Compile Include="Source\Config\CapitalConfig.cs" />
+    <Compile Include="Source\Excel\ExcelParser.cs" />
     <Compile Include="Source\MainModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

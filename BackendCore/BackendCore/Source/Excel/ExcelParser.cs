@@ -118,6 +118,8 @@ namespace BackendCore
                 System.Console.WriteLine("- Calculate Error Fee M36 \n{0}", e.StackTrace);
             }
 
+            return ret;
+
         }
 
         public void SetFeeM36Pos(int row, int col)

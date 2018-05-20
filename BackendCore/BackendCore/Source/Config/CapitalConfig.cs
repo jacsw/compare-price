@@ -2,45 +2,8 @@
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
-namespace BackendCore
+namespace BackendCore.Source.Config
 {
-    [DataContract]
-    class JsonMemberPoint
-    {
-        [DataMember]
-        public int Row;
-        [DataMember]
-        public int Col;
-    }
-
-    [DataContract]
-    class JsonMemberFee
-    {
-        [DataMember]
-        public JsonMemberPoint M36;
-        [DataMember]
-        public JsonMemberPoint M48;
-        [DataMember]
-        public JsonMemberPoint M60;
-    }
-
-    [DataContract]
-    class JsonCapitalData
-    {
-        [DataMember]
-        public string Com;
-        [DataMember]
-        public string File;
-        [DataMember]
-        public string Worksheet;
-        [DataMember]
-        public JsonMemberPoint Rate;
-        [DataMember]
-        public JsonMemberPoint Price;
-        [DataMember]
-        public JsonMemberFee Fee;
-    }
-
     class CapitalConfig
     {
         public CapitalConfig(string filename)
