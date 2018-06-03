@@ -1,47 +1,14 @@
 [
     {
-        "Com" : "하나캐피탈"	,	
-        "File" : "D:\\Rent\\Excel\\HANA\\HANA_20180310.xlsx",
-        "Worksheet" : "(국산차)견적",
-        "Price" : {
-            "Row" : 14,
-            "Col" : 59
-        },
-        "Fee" : {
-            "M36" : {
-                "Row" : 30,
-                "Col" : 8
-            }
-        }
+        "Capital" : "하나캐피탈",	
+        "File" : "D:\\Rent\\Excel\\HANA\\HANA.json"
     },
     {
-        "Com" : "JB우리캐피탈",	
-        "File" : "D:\\Rent\\Excel\\JBWOORI\\JBWOORI_20180421.xlsm",
-        "Worksheet" : "국산",
-        "Price" : {
-            "Row" : 16,
-            "Col" : 50
-        },
-        "Fee" : {
-            "M36" : {
-                "Row" : 27,
-                "Col" : 9
-            }
-        }
+        "Capital" : "JB우리캐피탈",	
+        "File" : "D:\\Rent\\Excel\\JBWOORI\\JBWOORI.json"
     },
     {
-        "Com" : "효성캐피탈",	
-        "File" : "D:\\Rent\\Excel\\HYOSUNG\\HYOSUNG_20180418-2.xlsx",
-        "Worksheet" : "견적서및입력시트",
-        "Price" : {
-            "Row" : 18,
-            "Col" : 11
-        },
-        "Fee" : {
-            "M36" : {
-                "Row" : 20,
-                "Col" : 46
-            }
-        }
+        "Capital" : "효성캐피탈",	
+        "File" : "D:\\Rent\\Excel\\HYOSUNG\\HYOSUNG.json"
     }
 ]

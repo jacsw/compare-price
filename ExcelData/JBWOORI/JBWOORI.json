@@ -1,0 +1,44 @@
+{
+    "CapitalName" : "JB우리캐피탈",
+    "ExcelFile" : "D:\\Rent\\Excel\\JBWOORI\\JBWOORI_20180421-UnLock.xlsm",
+    "Worksheet" : "국산",
+    "CarInfo" : {
+        "Company" : {"Row" : 33, "Col" : 44 },
+        "Model"   : {"Row" : 14, "Col" : 59 },
+        "Trim"    : {"Row" : 14, "Col" : 59 }
+    },
+    "Price" : {
+        "TotalPrice"  : {"Row" : 14, "Col" : 59 },
+        "BasePrice"   : {"Row" : 14, "Col" : 59 },
+        "OptionPrice" : {"Row" : 14, "Col" : 59 },
+        "OptionInfo"  : {"Row" : 14, "Col" : 59 }
+    },
+    "Payment" : {
+        "Deposit"     : {"Row" : 14, "Col" : 59 },
+        "PrePayment"  : {"Row" : 14, "Col" : 59 },
+        "FeeM36" : {
+            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
+            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
+            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
+            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
+        },
+        "FeeM48" : {
+            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
+            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
+            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
+            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
+        },
+        "FeeM60" : {
+            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
+            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
+            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
+            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
+        }
+    },
+    "Extra" : [
+        {"Row" : 14, "Col" : 59 },
+        {"Row" : 14, "Col" : 59 },
+        {"Row" : 14, "Col" : 59 },
+        {"Row" : 14, "Col" : 59 }
+    ]
+}
