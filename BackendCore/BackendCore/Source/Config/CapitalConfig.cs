@@ -4,6 +4,13 @@ using System.Runtime.Serialization.Json;
 
 namespace BackendCore.Source.Config
 {
+    class CapitalData
+    {
+        public string CapitalName;
+        public string ConfigFile;
+        public JsonCapitalConfig Config;
+    }
+
     class CapitalConfig
     {
         public CapitalConfig(string filename)
@@ -11,57 +18,64 @@ namespace BackendCore.Source.Config
             mConfigFilename = filename;
         }
 
-        public void LoadConfig()
+        public void LoadConfig() // LoadCapitalList()
         {
             StreamReader sr = new StreamReader(mConfigFilename);
             string jsonString = string.Empty;
             jsonString = sr.ReadToEnd();
             sr.Close();
 
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(JsonCapitalData[]));
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(JsonCapitalList[]));
 
             MemoryStream memJs = new MemoryStream();
             StreamWriter wr = new StreamWriter(memJs);
             wr.Write(jsonString);
             wr.Flush();
             memJs.Position = 0;
-            mCapitalData = (JsonCapitalData[])js.ReadObject(memJs);
+
+            JsonCapitalList[] capitalList = (JsonCapitalList[])js.ReadObject(memJs);
+
+            mCapitalData = new CapitalData[capitalList.GetLength(0)];
+
 
             System.Console.WriteLine("Config Size : {0}", mCapitalData.GetLength(0));
 
+            System.Console.WriteLine("--------------------------------------------------");
             for (int i = 0; i < mCapitalData.GetLength(0); i++)
             {
-                System.Console.WriteLine("--------------------------------------------------");
-                System.Console.WriteLine("- Com  : {0}", mCapitalData[i].Com);
-                System.Console.WriteLine("- File : {0}", mCapitalData[i].File);
-                if (mCapitalData[i].Rate != null)
-                {
-                    System.Console.WriteLine("- Rate : ({0}, {1}) / (Row, Col)",
-                        mCapitalData[i].Rate.Row, mCapitalData[i].Rate.Col);
-                }
-                if (mCapitalData[i].Price != null)
-                {
-                    System.Console.WriteLine("- Price : ({0}, {1}) / (Row, Col)",
-                        mCapitalData[i].Price.Row, mCapitalData[i].Price.Col);
-                }
-                if (mCapitalData[i].Fee.M36 != null)
-                {
-                    System.Console.WriteLine("- Fee.M36 : ({0}, {1}) / (Row, Col)",
-                        mCapitalData[i].Fee.M36.Row, mCapitalData[i].Fee.M36.Col);
-                }
-                if (mCapitalData[i].Fee.M48 != null)
-                {
-                    System.Console.WriteLine("- Fee.M48 : ({0}, {1}) / (Row, Col)",
-                        mCapitalData[i].Fee.M48.Row, mCapitalData[i].Fee.M48.Col);
-                }
-                if (mCapitalData[i].Fee.M60 != null)
-                {
-                    System.Console.WriteLine("- Fee.M60 : ({0}, {1}) / (Row, Col)",
-                        mCapitalData[i].Fee.M60.Row, mCapitalData[i].Fee.M60.Col);
-                }
-            }
+                mCapitalData[i] = new CapitalData();
+                mCapitalData[i].CapitalName = capitalList[i].Capital;
+                mCapitalData[i].ConfigFile  = capitalList[i].File;
 
+                System.Console.WriteLine("* Com : {0} / Config File : {1}", mCapitalData[i].CapitalName, mCapitalData[i].ConfigFile);
+                LoadCapitalData(mCapitalData[i]);
+
+
+            }
             System.Console.WriteLine("--------------------------------------------------");
+        }
+
+
+        private void LoadCapitalData(CapitalData pCapitalData)
+        {
+            StreamReader sr = new StreamReader(pCapitalData.ConfigFile);
+            string jsonString = string.Empty;
+            jsonString = sr.ReadToEnd();
+            sr.Close();
+
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(JsonCapitalConfig));
+
+            MemoryStream memJs = new MemoryStream();
+            StreamWriter wr = new StreamWriter(memJs);
+            wr.Write(jsonString);
+            wr.Flush();
+            memJs.Position = 0;
+            pCapitalData.Config = (JsonCapitalConfig)js.ReadObject(memJs);
+            System.Console.WriteLine("  - Excel File : {0}", pCapitalData.Config.ExcelFile);
+            System.Console.WriteLine("  - Work Sheet : {0}", pCapitalData.Config.Worksheet);
+            System.Console.WriteLine("  - CarInfo.Company : ({0}, {1})", pCapitalData.Config.CarInfo.Company.Row,
+                pCapitalData.Config.CarInfo.Company.Col);
+
         }
 
         public int GetCount()
@@ -74,7 +88,7 @@ namespace BackendCore.Source.Config
             return mCapitalData.GetLength(0);
         }
 
-        public JsonCapitalData GetCapitalData(int n)
+        public CapitalData GetCapitalData(int n)
         {
             if (n < 0 || n >= GetCount())
             {
@@ -85,6 +99,6 @@ namespace BackendCore.Source.Config
         }
 
         private string mConfigFilename;
-        private JsonCapitalData[] mCapitalData;
+        private CapitalData[] mCapitalData;
     }
 }

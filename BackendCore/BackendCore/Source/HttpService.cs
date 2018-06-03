@@ -10,11 +10,11 @@ namespace BackendCore.Source
         private static string ServiceURL = "http://127.0.0.1:40000/";  // "http://localhost:40000/"
 
         private bool RunState = true;
-        private ExcelParser[] mExcelInfo = null;
+        private ExcelParser.ExcelBase[] mExcelInfo = null;
    
         public HttpService(Object excel)
         {
-            mExcelInfo = (ExcelParser[])excel;
+            mExcelInfo = (ExcelParser.ExcelBase[])excel;
 
             HttpListener listener = new HttpListener();
             listener.Prefixes.Add(ServiceURL);
@@ -92,18 +92,21 @@ namespace BackendCore.Source
 
             for (int i = 0; i < mExcelInfo.Length; i++)
             {
-                System.Console.WriteLine("CalculateFee / COM : {0}", mExcelInfo[i].GetCompanyName());
+                System.Console.WriteLine("CalculateFee / COM : {0}", mExcelInfo[i].GetCapitalName());
 
+/*
                 mExcelInfo[i].SetPrice(parseData.Price);
                 mExcelInfo[i].SetRate(parseData.Rate);
 
-                string com = mExcelInfo[i].GetCompanyName();
+                string com = mExcelInfo[i].GetCapitalName();
                 int rate = mExcelInfo[i].GetRate(parseData.Rate);
                 int m36 = mExcelInfo[i].GetFeeM36();
                 int m48 = mExcelInfo[i].GetFeeM48();
                 int m60 = mExcelInfo[i].GetFeeM60();
 
                 sendData[i] = new JsonSend { Com = com, Rate = rate, FeeM36 = m36, FeeM48 = m48, FeeM60 = m60 };
+
+*/
             }
 
             return sendData;

@@ -1,58 +1,50 @@
 ﻿using BackendCore.Source;
 using System;
 
-namespace BackendCore
+namespace BackendCore.Source
 {
     class MainModule
     {
+        static private string config = @"D:\Rent\Excel\CapitalList.json";
+
         static void Main(string[] args)
         {
-            ExcelParser.ModuleInit();
             MainModule main = new MainModule();
             main.Init();
-            main.Run();
+//            main.Run();
             main.Deinit();
-
-            ExcelParser.ModuleDeInit();
         }
 
         public void Init()
         {
             // TODO : Set by JSON File
-            mConfig = new CapitalConfig(@"D:\Rent\Excel\CapitalList.json");
+            mConfig = new Config.CapitalConfig(config);
             mConfig.LoadConfig();
 
-            mExcels = new ExcelParser[mConfig.GetCount()];
+            System.Console.WriteLine("--------------------------------------------------");
+
+            ExcelParser.ExcelInstance.ModuleInit();
+            mExcels = new ExcelParser.ExcelBase[mConfig.GetCount()];
+
             for (int i = 0; i < mConfig.GetCount(); i++)
             {
-                var info = mConfig.GetCapitalData(i);
-
-                mExcels[i] = new ExcelParser(info.Com, info.File, info.Worksheet);
-                if (info.Price != null)
+                var config = mConfig.GetCapitalData(i);
+                switch(config.CapitalName)
                 {
-                    mExcels[i].SetPricePos(info.Price.Row, info.Price.Col);
+                    case "하나캐피탈" :
+                        mExcels[i] = new ExcelParser.ExcelHana(config);
+                        mExcels[i].Init();
+                        break;
+                    case "효성캐피탈":
+                        mExcels[i] = new ExcelParser.ExcelHyosung(config);
+                        mExcels[i].Init();
+                        break;
+                    case "JB우리캐피탈":
+                        mExcels[i] = new ExcelParser.ExcelJBWoori(config);
+                        mExcels[i].Init();
+                        break;
                 }
-                if (info.Rate != null)
-                {
-                    mExcels[i].SetRatePos(info.Rate.Row, info.Rate.Col);
-                }
-                if (info.Fee.M36 != null)
-                {
-                    mExcels[i].SetFeeM36Pos(info.Fee.M36.Row, info.Fee.M36.Col);
-                }
-                if (info.Fee.M48 != null)
-                {
-                    mExcels[i].SetFeeM48Pos(info.Fee.M48.Row, info.Fee.M48.Col);
-                }
-                if (info.Fee.M60 != null)
-                {
-                    mExcels[i].SetFeeM60Pos(info.Fee.M60.Row, info.Fee.M60.Col);
-                }
-
-                mExcels[i].Init();
             }
-
-            System.Console.WriteLine("--------------------------------------------------");
         }
 
         public void Run()
@@ -68,11 +60,13 @@ namespace BackendCore
         {
             for (int i = 0; i < mConfig.GetCount(); i++)
             {
-                mExcels[i].Deinit();
+                if (mExcels[i] != null) mExcels[i].Deinit();
             }
+
+            ExcelParser.ExcelInstance.ModuleDeInit();
         }
 
-        private ExcelParser[] mExcels;
-        private CapitalConfig mConfig;
+        private ExcelParser.ExcelBase[] mExcels;
+        private Config.CapitalConfig mConfig;
     }
 }

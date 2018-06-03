@@ -9,12 +9,21 @@ using System.Runtime.Serialization;
 namespace BackendCore.Source.Config
 {
     //
-    // Main Type : Json Configuration 
+    // Main Type : Json Capital File Config
     [DataContract]
-    class JsonCapitalData
+    class JsonCapitalList
+    {
+        [DataMember] public string Capital;
+        [DataMember] public string File;
+    }
+
+    //
+    // Main Type : Json Configuration
+    [DataContract]
+    class JsonCapitalConfig
     {
         [DataMember] public string CapitalName;
-        [DataMember] public string FilePath;
+        [DataMember] public string ExcelFile;
         [DataMember] public string Worksheet;
 
         [DataMember] public JsonConfig_CarInfo CarInfo;
