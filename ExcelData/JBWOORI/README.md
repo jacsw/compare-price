@@ -3,7 +3,11 @@
     "ExcelFile" : "D:\\Rent\\Excel\\JBWOORI\\JBWOORI_20180421-UnLock.xlsm",
     "Worksheet" : "국산",
     "CarInfo" : {
-        "Company" : {"Row" : 12, "Col" : 50 },
+        "Company" : {"Row" : 12, "Col" : 50 },  // 현대자동차(현대)
+                                                // 기아자동차(기아)
+                                                // GM쉐보레(GM)
+                                                // 르노삼성자동차(삼성)
+                                                // 쌍용자동차(쌍용)
         "Model"   : {"Row" : 13, "Col" : 50 },
         "Trim"    : {"Row" : 14, "Col" : 50 }
     },
