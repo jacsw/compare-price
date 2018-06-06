@@ -6,6 +6,8 @@ namespace BackendCore.Source
     class MainModule
     {
         static private string config = @"D:\Rent\Excel\CapitalList.json";
+        static private string mCarListFile = @"D:\Rent\CarList_20180529.xlsx";
+        static private string mCarListSheet = @"현대";
 
         static void Main(string[] args)
         {
@@ -24,8 +26,12 @@ namespace BackendCore.Source
             System.Console.WriteLine("--------------------------------------------------");
 
             ExcelParser.ExcelInstance.ModuleInit();
-            mExcels = new ExcelParser.ExcelBase[mConfig.GetCount()];
 
+            var CarList = new ExcelParser.ExcelCarList(mCarListFile, mCarListSheet);
+            CarList.Init();
+            CarList.Deinit();
+
+            mExcels = new ExcelParser.ExcelBase[mConfig.GetCount()];
             for (int i = 0; i < mConfig.GetCount(); i++)
             {
                 var config = mConfig.GetCapitalData(i);
