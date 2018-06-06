@@ -22,9 +22,10 @@
         "ResidualRate"  : {"Row" : 24, "Col" : 9 }
     },
     "Extra" : [
-        {"Row" : 21, "Col" : 9 },
-        {"Row" : 14, "Col" : 59 },
-        {"Row" : 14, "Col" : 59 },
-        {"Row" : 14, "Col" : 59 }
+        {"Row" : 25, "Col" : 9 },
+        {"Row" : 9,  "Col" : 50 },
+        {"Row" : 10, "Col" : 50 },
+        {"Row" : 19, "Col" : 9 },
+        {"Row" : 20, "Col" : 9 },
     ]
 }
