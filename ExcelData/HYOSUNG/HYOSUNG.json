@@ -14,26 +14,12 @@
         "OptionInfo"  : {"Row" : 14, "Col" : 59 }
     },
     "Payment" : {
-        "Deposit"     : {"Row" : 14, "Col" : 59 },
-        "PrePayment"  : {"Row" : 14, "Col" : 59 },
-        "FeeM36" : {
-            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
-            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
-            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
-            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
-        },
-        "FeeM48" : {
-            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
-            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
-            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
-            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
-        },
-        "FeeM60" : {
-            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
-            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
-            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
-            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
-        }
+        "Deposit"       : {"Row" : 22, "Col" : 9 },
+        "PrePayment"    : {"Row" : 23, "Col" : 9 },
+        "Duration"      : {"Row" : 21, "Col" : 9 },
+        "MonthlyFee"    : {"Row" : 27, "Col" : 9 },
+        "ResidualValue" : {"Row" : 24, "Col" : 12 },
+        "ResidualRate"  : {"Row" : 24, "Col" : 9 }
     },
     "Extra" : [
         {"Row" : 14, "Col" : 59 },

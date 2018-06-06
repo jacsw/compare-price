@@ -60,23 +60,14 @@ namespace BackendCore.Source.Config
     }
 
     [DataContract]
-    public class JsonConfig_CostFee
-    {
-        [DataMember] public JsonConfig_ExcelPos MonthlyFee;
-        [DataMember] public JsonConfig_ExcelPos AcquisitionPrice;
-        [DataMember] public JsonConfig_ExcelPos ResidualValue;
-        [DataMember] public JsonConfig_ExcelPos ResidualRate;
-    }
-
-    [DataContract]
     public class JsonConfig_Payment
     {
         [DataMember] public JsonConfig_ExcelPos Deposit;
         [DataMember] public JsonConfig_ExcelPos PrePayment;
-
-        [DataMember] public JsonConfig_CostFee FeeM36;
-        [DataMember] public JsonConfig_CostFee FeeM48;
-        [DataMember] public JsonConfig_CostFee FeeM60;
+        [DataMember] public JsonConfig_ExcelPos Duration;
+        [DataMember] public JsonConfig_ExcelPos MonthlyFee;
+        [DataMember] public JsonConfig_ExcelPos ResidualValue;
+        [DataMember] public JsonConfig_ExcelPos ResidualRate;
     }
 
     [DataContract]

@@ -3,40 +3,26 @@
     "ExcelFile" : "D:\\Rent\\Excel\\JBWOORI\\JBWOORI_20180421-UnLock.xlsm",
     "Worksheet" : "국산",
     "CarInfo" : {
-        "Company" : {"Row" : 33, "Col" : 44 },
-        "Model"   : {"Row" : 14, "Col" : 59 },
-        "Trim"    : {"Row" : 14, "Col" : 59 }
+        "Company" : {"Row" : 12, "Col" : 50 },
+        "Model"   : {"Row" : 13, "Col" : 50 },
+        "Trim"    : {"Row" : 14, "Col" : 50 }
     },
     "Price" : {
-        "TotalPrice"  : {"Row" : 14, "Col" : 59 },
-        "BasePrice"   : {"Row" : 14, "Col" : 59 },
-        "OptionPrice" : {"Row" : 14, "Col" : 59 },
-        "OptionInfo"  : {"Row" : 14, "Col" : 59 }
+        "TotalPrice"  : {"Row" : 17, "Col" : 33 },
+        "BasePrice"   : {"Row" : 16, "Col" : 50 },
+        "OptionPrice" : {"Row" : 18, "Col" : 50 },
+        "OptionInfo"  : {"Row" : 17, "Col" : 50 }
     },
     "Payment" : {
-        "Deposit"     : {"Row" : 14, "Col" : 59 },
-        "PrePayment"  : {"Row" : 14, "Col" : 59 },
-        "FeeM36" : {
-            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
-            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
-            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
-            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
-        },
-        "FeeM48" : {
-            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
-            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
-            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
-            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
-        },
-        "FeeM60" : {
-            "MonthlyFee"       : {"Row" : 14, "Col" : 59 },
-            "AcquisitionPrice" : {"Row" : 14, "Col" : 59 },
-            "ResidualValue"    : {"Row" : 14, "Col" : 59 },
-            "ResidualRate"     : {"Row" : 14, "Col" : 59 }
-        }
+        "Deposit"       : {"Row" : 22, "Col" : 9 },
+        "PrePayment"    : {"Row" : 23, "Col" : 9 },
+        "Duration"      : {"Row" : 21, "Col" : 9 },
+        "MonthlyFee"    : {"Row" : 27, "Col" : 9 },
+        "ResidualValue" : {"Row" : 24, "Col" : 12 },
+        "ResidualRate"  : {"Row" : 24, "Col" : 9 }
     },
     "Extra" : [
-        {"Row" : 14, "Col" : 59 },
+        {"Row" : 21, "Col" : 9 },
         {"Row" : 14, "Col" : 59 },
         {"Row" : 14, "Col" : 59 },
         {"Row" : 14, "Col" : 59 }

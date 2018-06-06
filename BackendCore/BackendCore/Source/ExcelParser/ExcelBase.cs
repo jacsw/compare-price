@@ -24,13 +24,6 @@ namespace BackendCore.Source.ExcelParser
             mSheetName = pConfig.Config.Worksheet;
         }
 
-        public ExcelBase(string _capital, string _filename, string _sheetname)
-        {
-            mCapitalName = _capital;
-            mExcelFileName = _filename;
-            mSheetName = _sheetname;
-        }
-
         public string GetCapitalName()
         {
             return mCapitalName;
@@ -84,6 +77,7 @@ namespace BackendCore.Source.ExcelParser
       
             SetPositionfromConfigEach();
         }
+
         protected abstract void SetPositionfromConfigEach();
 
         Config.JsonConfig_CarInfo mPosCarInfo;

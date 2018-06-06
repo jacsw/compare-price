@@ -25,7 +25,7 @@ namespace BackendCore.Source.ExcelParser
 
         protected override void SetPositionfromConfigEach()
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }
