@@ -23,13 +23,13 @@ namespace BackendCore.Source.ExcelParser
 
         private Dictionary<string, CarName>  mMap = new Dictionary<string, CarName>();
 
-        public CarName addCarList(string pName)
+        public CarName AddCarList(string pName)
         {
             mMap.Add(pName, new CarName());
             return mMap[pName];
         }
 
-        public CarName getCarName(string pName)
+        public CarName GetCarName(string pName)
         {
             return mMap[pName];
         }
@@ -65,7 +65,7 @@ namespace BackendCore.Source.ExcelParser
                     string carinfo = company.ToString() + "/" + model.ToString() + "/" + trim.ToString();
                     System.Console.Write("Company : {0}", carinfo);
 
-                    var item = list.addCarList(carinfo);
+                    var item = list.AddCarList(carinfo);
                     item.Hyosung = row.Cells[1, 5].Value2.ToString();
                     item.KB      = row.Cells[1, 6].Value2.ToString();
                     item.Meriz   = row.Cells[1, 7].Value2.ToString();

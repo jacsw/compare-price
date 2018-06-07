@@ -30,7 +30,7 @@ namespace BackendCore.Source.Config
         [DataMember] public JsonConfig_Price Price;
         [DataMember] public JsonConfig_Payment Payment;
 
-        [DataMember] public JsonConfig_Extra Extra;
+        [DataMember] public JsonConfig_ExcelPos[] Extra;
     }
 
     //
@@ -68,11 +68,5 @@ namespace BackendCore.Source.Config
         [DataMember] public JsonConfig_ExcelPos MonthlyFee;
         [DataMember] public JsonConfig_ExcelPos ResidualValue;
         [DataMember] public JsonConfig_ExcelPos ResidualRate;
-    }
-
-    [DataContract]
-    public class JsonConfig_Extra
-    {
-        [DataMember] public JsonConfig_ExcelPos[] Arguments;
     }
 }

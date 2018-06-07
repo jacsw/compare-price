@@ -13,14 +13,15 @@ namespace BackendCore.Source.ExcelParser
         {
         }
 
-        public override void GetResonseInfo()
+        public override JsonResponseType GetResonseInfo()
         {
-            throw new NotImplementedException();
+            return null;
+            //throw new NotImplementedException();
         }
 
         public override void SetRequestInfo(JsonRequest request)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void SetPositionfromConfigEach()

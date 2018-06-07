@@ -37,7 +37,6 @@ namespace BackendCore.Source.Config
 
             mCapitalData = new CapitalData[capitalList.GetLength(0)];
 
-
             System.Console.WriteLine("Config Size : {0}", mCapitalData.GetLength(0));
 
             System.Console.WriteLine("--------------------------------------------------");

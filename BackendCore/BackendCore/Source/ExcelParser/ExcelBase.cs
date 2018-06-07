@@ -86,6 +86,6 @@ namespace BackendCore.Source.ExcelParser
 
         public abstract void SetRequestInfo(Interface.JsonRequest request);
 
-        public abstract void GetResonseInfo();
+        public abstract Interface.JsonResponseType GetResonseInfo();
     }
 }
