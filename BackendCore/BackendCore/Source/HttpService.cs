@@ -16,6 +16,9 @@ namespace BackendCore.Source
         {
             mExcelInfo = (ExcelParser.ExcelBase[])excel;
 
+
+            test_excel();
+/*
             HttpListener listener = new HttpListener();
             listener.Prefixes.Add(ServiceURL);
             listener.Start();
@@ -33,7 +36,47 @@ namespace BackendCore.Source
                 {
                 }
             }
+*/
         }
+
+
+        private void test_excel()
+        {
+            Interface.JsonRequest request = new Interface.JsonRequest()
+            {
+                RequestID = 1,
+                CarInfo = new Interface.JsonReq_CarInfo() {
+                    Company = "현대자동차",
+                    Model = "그랜저IG",
+                    Trim = "가솔린 3.3 셀러브리티"
+                },
+                Cost = new Interface.JsonReq_Cost {
+                    BasePrice = 41600000,
+                    OptionPrice = 2600000,
+                    OptionInfo = "HUD, 스마트센트II",
+                    Deposit = 10,
+                    PrePayment = 10000000
+                },
+                Commission = new Interface.JsonReq_Commission {
+                    CMCommission = 2.5,
+                    AGCommission = 5.5
+                },
+
+                //Repair = { }
+            };
+
+            mExcelInfo[1].SetRequestInfo(request);
+            var response = mExcelInfo[1].GetResonseInfo();
+
+/*
+            System.Console.WriteLine("<Receive Request>");
+            System.Console.WriteLine("- URL : {0} / Method : {1}", request.Url.ToString(), request.HttpMethod);
+            System.Console.WriteLine("- jsonData : {0}", recvData);
+            System.Console.WriteLine("<Parsing Request Data>");
+            System.Console.WriteLine("- Price : {0} /  Rate : {1}", recvJson.Price, recvJson.Rate);
+            System.Console.WriteLine("-------------------------------------------------");
+ */
+            }
 
         private string GetRequestData(HttpListenerRequest request)
         {

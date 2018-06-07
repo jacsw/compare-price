@@ -13,7 +13,7 @@ namespace BackendCore.Source
         {
             MainModule main = new MainModule();
             main.Init();
-//            main.Run();
+            main.Run();
             main.Deinit();
         }
 

@@ -42,8 +42,7 @@ namespace BackendCore.Source.Interface
     {
         [DataMember] public int MonthlyFee;
         [DataMember] public int AcquisitionPrice;
-        [DataMember] public int ResidualValue;
-        [DataMember] public int ResidualRate;
+        [DataMember] public double ResidualRate;
     }
 
     [DataContract]
