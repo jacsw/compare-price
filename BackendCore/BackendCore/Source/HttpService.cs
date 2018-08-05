@@ -55,7 +55,7 @@ namespace BackendCore.Source
                     OptionPrice = 2600000,
                     OptionInfo = "HUD, 스마트센트II",
                     Deposit = 10,
-                    PrePayment = 10000000
+                    PrePayment = 0
                 },
                 Commission = new Interface.JsonReq_Commission {
                     CMCommission = 2.5,
@@ -65,18 +65,44 @@ namespace BackendCore.Source
                 //Repair = { }
             };
 
+            System.Console.WriteLine("<Request : JB Woori>");
             mExcelInfo[1].SetRequestInfo(request);
-            var response = mExcelInfo[1].GetResonseInfo();
+            var response1 = mExcelInfo[1].GetResonseInfo();
+            PrintResponse(response1);
 
-/*
-            System.Console.WriteLine("<Receive Request>");
-            System.Console.WriteLine("- URL : {0} / Method : {1}", request.Url.ToString(), request.HttpMethod);
-            System.Console.WriteLine("- jsonData : {0}", recvData);
-            System.Console.WriteLine("<Parsing Request Data>");
-            System.Console.WriteLine("- Price : {0} /  Rate : {1}", recvJson.Price, recvJson.Rate);
-            System.Console.WriteLine("-------------------------------------------------");
- */
-            }
+            System.Console.WriteLine("<Request : Hyosung>");
+            mExcelInfo[2].SetRequestInfo(request);
+            var response2 = mExcelInfo[2].GetResonseInfo();
+            PrintResponse(response2);
+
+            System.Console.WriteLine("<Request : Hana>");
+            mExcelInfo[0].SetRequestInfo(request);
+            var response0 = mExcelInfo[0].GetResonseInfo();
+            PrintResponse(response0);
+
+            /*
+                        System.Console.WriteLine("<Receive Request>");
+                        System.Console.WriteLine("- URL : {0} / Method : {1}", request.Url.ToString(), request.HttpMethod);
+                        System.Console.WriteLine("- jsonData : {0}", recvData);
+                        System.Console.WriteLine("<Parsing Request Data>");
+                        System.Console.WriteLine("- Price : {0} /  Rate : {1}", recvJson.Price, recvJson.Rate);
+                        System.Console.WriteLine("-------------------------------------------------");
+             */
+        }
+
+        protected void PrintResponse(Interface.JsonResponseType resp)
+        {
+            System.Console.WriteLine("- CM Commission : {0}", resp.Commission.CMCommission);
+            System.Console.WriteLine("- AG Commission : {0}", resp.Commission.AGCommission);
+
+            System.Console.WriteLine("- 36개월 : {0} / {1} / {2}",
+                resp.Payment.Fee36M.MonthlyFee, resp.Payment.Fee36M.AcquisitionPrice, resp.Payment.Fee36M.ResidualRate);
+            System.Console.WriteLine("- 48개월 : {0} / {1} / {2}",
+                resp.Payment.Fee48M.MonthlyFee, resp.Payment.Fee48M.AcquisitionPrice, resp.Payment.Fee48M.ResidualRate);
+            System.Console.WriteLine("- 60개월 : {0} / {1} / {2}",
+                resp.Payment.Fee60M.MonthlyFee, resp.Payment.Fee60M.AcquisitionPrice, resp.Payment.Fee60M.ResidualRate);
+        }
+
 
         private string GetRequestData(HttpListenerRequest request)
         {

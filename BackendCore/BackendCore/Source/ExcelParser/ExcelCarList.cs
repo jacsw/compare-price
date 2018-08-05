@@ -14,6 +14,7 @@ namespace BackendCore.Source.ExcelParser
         public string Meriz;
         public string Woori;
         public string JBWoori;
+        public string Hana;
     }
 
     class CarList
@@ -31,6 +32,7 @@ namespace BackendCore.Source.ExcelParser
 
         public CarName GetCarName(string pName)
         {
+            System.Console.WriteLine("GetCarName... : {0}", pName);
             return mMap[pName];
         }
     }
@@ -71,6 +73,7 @@ namespace BackendCore.Source.ExcelParser
                     item.Meriz   = row.Cells[1, 7].Value2.ToString();
                     item.Woori   = row.Cells[1, 8].Value2.ToString();
                     item.JBWoori = row.Cells[1, 9].Value2.ToString();
+                    item.Hana    = row.Cells[1,10].Value2.ToString();
 
                     System.Console.WriteLine(" / JB = {0}", item.JBWoori);
                 }
