@@ -3,28 +3,29 @@
     "ExcelFile" : "D:\\Rent\\Excel\\HYOSUNG\\HYOSUNG_20180418-UnLock.xlsx",
     "Worksheet" : "견적서및입력시트",
     "CarInfo" : {
-        "Company" : {"Row" : 11, "Col" : 22 },
-        "Model"   : {"Row" : 14, "Col" : 59 },
-        "Trim"    : {"Row" : 14, "Col" : 59 }
+        "Company" : {"Row" : 6, "Col" : 100 },
+        "Model"   : {"Row" : 13, "Col" : 82 },
+        "Trim"    : {"Row" : 15, "Col" : 82 }
     },
     "Price" : {
-        "TotalPrice"  : {"Row" : 14, "Col" : 59 },
-        "BasePrice"   : {"Row" : 14, "Col" : 59 },
-        "OptionPrice" : {"Row" : 14, "Col" : 59 },
-        "OptionInfo"  : {"Row" : 14, "Col" : 59 }
+        "TotalPrice"  : {"Row" : 18, "Col" : 11 },
+        "BasePrice"   : {"Row" : 17, "Col" : 65 },
+        "OptionPrice" : {"Row" : 17, "Col" : 82 },
+        "OptionInfo"  : {"Row" : 19, "Col" : 82 }
     },
     "Payment" : {
-        "Deposit"       : {"Row" : 22, "Col" : 9 },
-        "PrePayment"    : {"Row" : 23, "Col" : 9 },
-        "Duration"      : {"Row" : 21, "Col" : 9 },
-        "MonthlyFee"    : {"Row" : 27, "Col" : 9 },
-        "ResidualValue" : {"Row" : 24, "Col" : 12 },
-        "ResidualRate"  : {"Row" : 24, "Col" : 9 }
+        "Deposit"       : {"Row" : 38, "Col" : 65 },
+        "PrePayment"    : {"Row" : 39, "Col" : 65 },
+        "Duration"      : {"Row" : 36, "Col" : 65 },
+        "MonthlyFee"    : {"Row" : 18, "Col" : 46 },
+        "ResidualValue" : {"Row" : 18, "Col" : 25 },
+        "ResidualRate"  : {"Row" : 19, "Col" : 27 }
     },
     "Extra" : [
-        {"Row" : 14, "Col" : 59 },
-        {"Row" : 14, "Col" : 59 },
-        {"Row" : 14, "Col" : 59 },
-        {"Row" : 14, "Col" : 59 }
+        {"Row" : 37, "Col" : 65 }, 
+        {"Row" : 41, "Col" : 65 },
+        {"Row" : 40, "Col" : 65 },
+        {"Row" : 80, "Col" : 101 },
+        {"Row" : 82, "Col" : 102 }
     ]
 }
