@@ -15,10 +15,8 @@ namespace BackendCore.Source
         public HttpService(Object excel)
         {
             mExcelInfo = (ExcelParser.ExcelBase[])excel;
+            // test_excel();
 
-
-            test_excel();
-/*
             HttpListener listener = new HttpListener();
             listener.Prefixes.Add(ServiceURL);
             listener.Start();
@@ -36,9 +34,7 @@ namespace BackendCore.Source
                 {
                 }
             }
-*/
         }
-
 
         private void test_excel()
         {
@@ -60,9 +56,7 @@ namespace BackendCore.Source
                 Commission = new Interface.JsonReq_Commission {
                     CMCommission = 2.5,
                     AGCommission = 5.5
-                },
-
-                //Repair = { }
+                }
             };
 
             System.Console.WriteLine("<Request : JB Woori>");
@@ -79,19 +73,11 @@ namespace BackendCore.Source
             mExcelInfo[0].SetRequestInfo(request);
             var response0 = mExcelInfo[0].GetResonseInfo();
             PrintResponse(response0);
-
-            /*
-                        System.Console.WriteLine("<Receive Request>");
-                        System.Console.WriteLine("- URL : {0} / Method : {1}", request.Url.ToString(), request.HttpMethod);
-                        System.Console.WriteLine("- jsonData : {0}", recvData);
-                        System.Console.WriteLine("<Parsing Request Data>");
-                        System.Console.WriteLine("- Price : {0} /  Rate : {1}", recvJson.Price, recvJson.Rate);
-                        System.Console.WriteLine("-------------------------------------------------");
-             */
         }
 
         protected void PrintResponse(Interface.JsonResponseType resp)
         {
+            System.Console.WriteLine("<Print Response Information>");
             System.Console.WriteLine("- CM Commission : {0}", resp.Commission.CMCommission);
             System.Console.WriteLine("- AG Commission : {0}", resp.Commission.AGCommission);
 
@@ -117,7 +103,7 @@ namespace BackendCore.Source
         {
             HttpListenerRequest request = context.Request;
             HttpListenerResponse response = context.Response;
-            JsonReceive recvJson = null;
+            Interface.JsonRequest recvJson = null;
 
             try
             {
@@ -128,10 +114,10 @@ namespace BackendCore.Source
                 System.Console.WriteLine("- URL : {0} / Method : {1}", request.Url.ToString(), request.HttpMethod);
                 System.Console.WriteLine("- jsonData : {0}", recvData);
                 System.Console.WriteLine("<Parsing Request Data>");
-                System.Console.WriteLine("- Price : {0} /  Rate : {1}", recvJson.Price, recvJson.Rate);
+                System.Console.WriteLine("- Model : {0} /  Base Cost : {1}", recvJson.CarInfo.Model, recvJson.Cost.BasePrice);
                 System.Console.WriteLine("-------------------------------------------------");
 
-                if (recvJson.Price == -1) RunState = false;
+                if (recvJson.Cost.BasePrice == -1) RunState = false;
             }
             catch (Exception)
             {
@@ -143,7 +129,7 @@ namespace BackendCore.Source
             {
                 if (recvJson != null)
                 {
-                    JsonSend[] sendJson = CalculateFee(recvJson);
+                    Interface.JsonResponse sendJson = CalculateFee(recvJson);
                     ResponseToRequester(response, sendJson);
                 }
             }
@@ -155,13 +141,21 @@ namespace BackendCore.Source
             }
         }
 
-        private JsonSend[] CalculateFee(JsonReceive parseData)
+        private Interface.JsonResponse CalculateFee(Interface.JsonRequest request)
         {
-            JsonSend[] sendData = new JsonSend[mExcelInfo.Length];
+            Interface.JsonResponse response = new Interface.JsonResponse();
+            response.RequestID = request.RequestID;
+            response.Response = new Interface.JsonResponseType[mExcelInfo.Length];
+            // JsonSend[] sendData = new JsonSend[mExcelInfo.Length];
 
             for (int i = 0; i < mExcelInfo.Length; i++)
             {
                 System.Console.WriteLine("CalculateFee / COM : {0}", mExcelInfo[i].GetCapitalName());
+                System.Console.WriteLine("<Request : {0} >", mExcelInfo[i].GetCapitalName());
+
+                mExcelInfo[i].SetRequestInfo(request);
+                response.Response[i] = mExcelInfo[i].GetResonseInfo();
+                PrintResponse(response.Response[i]);
 
 /*
                 mExcelInfo[i].SetPrice(parseData.Price);
@@ -174,14 +168,13 @@ namespace BackendCore.Source
                 int m60 = mExcelInfo[i].GetFeeM60();
 
                 sendData[i] = new JsonSend { Com = com, Rate = rate, FeeM36 = m36, FeeM48 = m48, FeeM60 = m60 };
-
 */
             }
 
-            return sendData;
+            return response;
         }
 
-        private void ResponseToRequester(HttpListenerResponse response, JsonSend[] calculateData)
+        private void ResponseToRequester(HttpListenerResponse response, Interface.JsonResponse calculateData)
         {
             try
             {

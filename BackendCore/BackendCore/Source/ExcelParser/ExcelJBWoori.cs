@@ -17,6 +17,8 @@ namespace BackendCore.Source.ExcelParser
         {
             var resp = MakeResponse();
 
+            resp.CapitalName = "JB우리캐피탈";
+
             var CarInfo = mConfig.Config.CarInfo;
             resp.CarInfo.Company = mWorksheet.Cells[CarInfo.Company.Row, CarInfo.Company.Col].Value;
             resp.CarInfo.Model = mWorksheet.Cells[CarInfo.Model.Row, CarInfo.Model.Col].Value;

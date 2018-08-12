@@ -5,37 +5,13 @@ using System.Runtime.Serialization.Json;
 
 namespace BackendCore.Source
 {
-    [DataContract]
-    class JsonReceive
-    {
-        [DataMember]
-        public int Rate;
-        [DataMember]
-        public int Price;
-    }
-
-    [DataContract]
-    class JsonSend
-    {
-        [DataMember]
-        public string Com;
-        [DataMember]
-        public int Rate;
-        [DataMember]
-        public int FeeM36;
-        [DataMember]
-        public int FeeM48;
-        [DataMember]
-        public int FeeM60;
-    }
-
     class JsonParser
     {
-        public static string ComposeJson(JsonSend[] calculateData)
+        public static string ComposeJson(Interface.JsonResponse calculateData)
         {
             string jsonString = string.Empty;
 
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(JsonSend[]));
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Interface.JsonResponse));
             MemoryStream mem = new MemoryStream();
             js.WriteObject(mem, calculateData);
             mem.Position = 0;
@@ -46,10 +22,10 @@ namespace BackendCore.Source
             return jsonString;
         }
 
-        public static JsonReceive ParseJson(string jsonString)
+        public static Interface.JsonRequest ParseJson(string jsonString)
         {
-            JsonReceive parseReceive;
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(JsonReceive));
+            Interface.JsonRequest parseReceive;
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Interface.JsonRequest));
 
             MemoryStream memJs = new MemoryStream();
             StreamWriter wr = new StreamWriter(memJs);
@@ -59,7 +35,7 @@ namespace BackendCore.Source
 
             try
             {
-                parseReceive = (JsonReceive)js.ReadObject(memJs);
+                parseReceive = (Interface.JsonRequest)js.ReadObject(memJs);
                 return parseReceive;
             }
             catch

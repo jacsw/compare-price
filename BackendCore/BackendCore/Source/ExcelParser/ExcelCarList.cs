@@ -42,7 +42,7 @@ namespace BackendCore.Source.ExcelParser
         //
         // ExcelBase Common 
 
-        public ExcelCarList(string pPath, string pSheet)
+        public ExcelCarList(string pPath, string[] pSheet)
         {
             mExcelFileName = pPath;
             mSheetName = pSheet;
@@ -64,6 +64,7 @@ namespace BackendCore.Source.ExcelParser
 
                 if (company != null && model != null && trim != null)
                 {
+                    if (company == "제조사") continue;
                     string carinfo = company.ToString() + "/" + model.ToString() + "/" + trim.ToString();
                     System.Console.Write("Company : {0}", carinfo);
 
@@ -86,10 +87,14 @@ namespace BackendCore.Source.ExcelParser
             {
                 System.Console.Write("Data CarList...File : {0}", mExcelFileName);
                 mWorkbook = ExcelInstance.getInstance().Workbooks.Open(mExcelFileName);
-                mWorksheet = mWorkbook.Sheets[mSheetName];
+
+                foreach(string name in mSheetName) {
+                    mWorksheet = mWorkbook.Sheets[name];
+                    loadCarList();
+                }
+
                 System.Console.WriteLine("Completed");
 
-                loadCarList();
             }
             finally
             {
@@ -113,6 +118,6 @@ namespace BackendCore.Source.ExcelParser
         private Excel.Worksheet mWorksheet = null;
 
         private string mExcelFileName;
-        private string mSheetName;
+        private string[] mSheetName;
     }
 }

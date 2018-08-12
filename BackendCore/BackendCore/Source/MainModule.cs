@@ -7,7 +7,7 @@ namespace BackendCore.Source
     {
         static private string config = @"D:\Rent\Excel\CapitalList.json";
         static private string mCarListFile = @"D:\Rent\CarList_20180529.xlsx";
-        static private string mCarListSheet = @"현대";
+        static private string[] mCarListSheet = {@"현대", @"기아"};
 
         static void Main(string[] args)
         {
